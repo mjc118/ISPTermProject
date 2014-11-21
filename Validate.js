@@ -1,3 +1,82 @@
+$(document).ready(function(){
+	$('#userid').change(function(){
+		if(CheckUserID()){
+			$.ajax({
+				url: 'Fetch.php',
+				type: 'POST',
+				data:{CheckID:$('#userid').val()},
+				dataType: 'text',
+				success: function(Result){
+					if(Result == "True"){
+						alert("Not a Unique User ID!");
+						document.getElementById('userid').style.border = "1px solid red";
+						document.getElementById('userid').value = "";
+					}
+					else{
+						document.getElementById('userid').style.border = "1px solid white";
+					}
+				}
+			});
+		}
+	});
+});
+
+function IsFormValid(){
+	var errorNumber = 1;
+	var AlertMsg = "The Form Has The Following Errors\n"; 
+	
+	if(!CheckUserID()){
+		AlertMsg += errorNumber + ") User ID has incorrect form\n";
+		++errorNumber;
+	}
+	if(!CheckFName()){
+		AlertMsg += errorNumber + ") First Name has incorrect form\n";
+		++errorNumber;
+	}
+	if(!CheckLName()){
+		AlertMsg += errorNumber + ") Last Name has incorrect form\n";
+		++errorNumber;
+	}
+	if(!CheckEmail()){
+		AlertMsg += errorNumber + ") Email has incorrect form\n";
+		++errorNumber;
+	}
+	if(!CheckPhone()){
+		AlertMsg += errorNumber + ") Phone Number has incorrect form\n";
+		++errorNumber;
+	}
+	/*if(!Check()){
+		AlertMsg += errorNumber + ") FirstName has incorrect form\n";
+	}*/
+	if(!CheckDate()){
+		AlertMsg += errorNumber + ") Date-Added has incorrect form\n";
+		++errorNumber;
+	}
+	
+	//check if a radio button is selected
+	if(!($('input[type=radio]:checked').size() > 0)){
+		AlertMsg += errorNumber + ") You Must Select a Sex\n";
+	}
+	
+	//validation failed
+	if(AlertMsg.length > 34){
+		alert(AlertMsg);
+		return false;
+	}
+	
+	return true;
+}
+
+function CheckUserID(){
+	var InputID = document.getElementById('userid').value;
+	var CorrectID = /^[0-9]{9}$/;
+	if(!InputID.match(CorrectID)){
+		document.getElementById('userid').style.border = "1px solid red";
+		return false;
+	}
+	
+	return true;
+}
 function CheckFName(){
 	var Name = document.getElementById('fname').value;
 	var FName = /^[A-Z]{1}[a-z]+$/;

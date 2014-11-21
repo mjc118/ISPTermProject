@@ -34,7 +34,7 @@
 			<thead>
 				<tr><th colspan="3">User Info</th></tr>
 			</thead>
-			<form id="MyForm" name="MyForm" method="post" attribute="post" action="UserListing.php">
+			<form id="MyForm" name="MyForm" onsubmit="return IsFormValid();"method="post" attribute="post" action="UserListing.php">
 				<tr><td>User ID:</td><td><input type="text" id="userid" name="userid" value="<?php if(!$AddUser){ echo $UserID;}?>" <?php if(!$AddUser){echo "readonly";}?>></td></tr>
 				<tr><td>First Name:</td><td><input type="text" id="fname" name="fname" onchange="CheckFName();"></td></tr>
 				<tr><td>Last Name:</td><td><input type="text" id="lname" name="lname" onchange="CheckLName();"></td></tr>

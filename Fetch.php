@@ -10,6 +10,18 @@
 		echo "<p>Connection Failed</p>";
 	}
 	
+	if(isset($_POST['CheckID'])){
+		$val = $_POST['CheckID'];
+		
+		$result = $mysqli->query("SELECT * FROM users WHERE userid = '$val'");
+		
+		if(mysqli_fetch_row($result)){//user with that id was found
+			echo "True";
+		}else{//query returned nothing
+			echo "False";
+		}
+	}
+	
 	//$result = $mysqli->query("SELECT * FROM users");
 	if(isset($_GET['USERID'])){
 		$val = $_GET['USERID'];

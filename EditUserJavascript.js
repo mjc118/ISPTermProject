@@ -24,5 +24,5 @@ $(document).ready(function(){
 			}
 		});
 	};
-	setTimeout(CallAjax, 1000);
+	setTimeout(CallAjax, 250);
 });
