@@ -11,9 +11,70 @@
 		echo "<p>Connection Failed</p>";
 	}
 	
+	//holds message related to whether Sql call for user was successful
+	$Success="";
+	if($_SERVER['REQUEST_METHOD'] === 'POST'){
+		if(isset($_POST['Create'])){
+			$userid = validate_input($_POST['userid']);
+			$fname = validate_input($_POST['fname']);
+			$lname = validate_input($_POST['lname']);
+			$email = validate_input($_POST['email']);
+			$phone = validate_input($_POST['phone']);
+			$street = validate_input($_POST['street']);
+			$city = validate_input($_POST['city']);
+			$state = validate_input($_POST['state']);
+			$zip = validate_input($_POST['zip']);
+			$addDate = validate_input($_POST['add-date']);
+			$sex = validate_input($_POST['sex']);
+			
+			if($mysqli->query("INSERT INTO users VALUES ('$userid', '$fname', '$lname', '$email', '$phone', '$addDate', '$sex')") &&
+			$mysqli->query("INSERT INTO address VALUES ('$userid', '$street', '$city', '$state', '$zip')")){
+				$Success = "User Added Successfully!";
+			}
+			else{
+				$Success = "Failed to Add User!";
+			}
+		}
+		else if(isset($_POST['Update'])){
+			$userid = validate_input($_POST['userid']);
+			$fname = validate_input($_POST['fname']);
+			$lname = validate_input($_POST['lname']);
+			$email = validate_input($_POST['email']);
+			$phone = validate_input($_POST['phone']);
+			$street = validate_input($_POST['street']);
+			$city = validate_input($_POST['city']);
+			$state = validate_input($_POST['state']);
+			$zip = validate_input($_POST['zip']);
+			$addDate = validate_input($_POST['add-date']);
+			$sex = validate_input($_POST['sex']);
+			
+			if($mysqli->query("UPDATE users SET fname='$fname', lname='$lname', email='$email', phone='$phone', addDate='$addDate', sex='$sex' WHERE userid='$userid'") &&
+			$mysqli->query("UPDATE address SET street='$street', city='$city', state='$state', zip='$zip' WHERE userid='$userid'")){
+				$Success = "Updated User Successfully!";
+			}else{
+				$Success = "Failed to Update User!";
+			}
+		}
+		else if(isset($_POST['delete-user'])){
+			$userid = validate_input($_POST['userid']);
+			
+			if($mysqli->query("DELETE users, address FROM users, address WHERE users.userid = address.userid AND users.userid = '$userid'")){
+				$Success = "Successfully Deleted User!";
+			}else{
+				$Success = "Failed to Delete User!";
+			}
+		}
+	}
+	
+	function validate_input($data){
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
 	//Which table to select from
 	//my table names are users, address
-	//users columns are :userid, fname, lname, email, phone, add-date, sex
+	//users columns are :userid, fname, lname, email, phone, addDate, sex
 	//address columns are: userid, street, city, state, zip
 	$result = $mysqli->query("SELECT * FROM users JOIN address ON users.userid = address.userid");
 
@@ -80,5 +141,10 @@
 				?>
 		</form>
 		</table>
+		<div style="text-align:center;">
+			<?php
+					echo $Success;
+			?>
+		</div>
 	</body>
 </html>

@@ -140,7 +140,7 @@ function CheckPhone(){
 
 function CheckStreet(){
 	var Street = document.getElementById('street').value;
-	var StreetCheck = /^([0-9A-z]+ )?([A-z ])+$/;
+	var StreetCheck = /^(([0-9A-z]+) ?([A-z ])?){1,}$/;
 	if(!Street.match(StreetCheck)){
 		document.getElementById('street').style.border = "1px solid red";
 		return false;

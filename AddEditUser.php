@@ -45,7 +45,7 @@
 				<tr><td>State:</td><td><input type="text" id="state" name="state" onchange="CheckState();"></td></tr>
 				<tr><td>Zip:</td><td><input type="text" id="zip" name="zip" onchange="CheckZip();"></td></tr>
 				<tr><td>Date Added:</td><td><input type="text" id="add-date" name="add-date" onchange="CheckDate();"></td></tr>
-				<tr><td>Male:<input type="radio" id="Male" name="sex"></td><td>Female:<input type="radio" id="Female" name="sex"></td></tr>
+				<tr><td>Male:<input type="radio" id="Male" name="sex" value="Male"></td><td>Female:<input type="radio" id="Female" name="sex" value="Female"></td></tr>
 				<tr>
 					<?php 
 						if($AddUser){
