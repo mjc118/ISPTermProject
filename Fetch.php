@@ -25,7 +25,7 @@
 	//$result = $mysqli->query("SELECT * FROM users");
 	if(isset($_GET['USERID'])){
 		$val = $_GET['USERID'];
-		$result = $mysqli->query("SELECT * FROM users WHERE userid = '$val'");
+		$result = $mysqli->query("SELECT * FROM users,address WHERE users.userid = address.userid AND users.userid = '$val'");
 		
 		if(!$result){
 			echo "<p> query failed</p>";

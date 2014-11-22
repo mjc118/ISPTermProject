@@ -45,9 +45,22 @@ function IsFormValid(){
 		AlertMsg += errorNumber + ") Phone Number has incorrect form\n";
 		++errorNumber;
 	}
-	/*if(!Check()){
-		AlertMsg += errorNumber + ") FirstName has incorrect form\n";
-	}*/
+	if(!CheckStreet()){
+		AlertMsg += errorNumber + ") Street Name has incorrect form\n";
+		++errorNumber;
+	}
+	if(!CheckCity()){
+		AlertMsg += errorNumber + ") City Name has incorrect form\n";
+		++errorNumber;
+	}
+	if(!CheckState()){
+		AlertMsg += errorNumber + ") State Name has incorrect form\n";
+		++errorNumber;
+	}
+	if(!CheckZip()){
+		AlertMsg += errorNumber + ") Zip Code has incorrect form\n";
+		++errorNumber;
+	}
 	if(!CheckDate()){
 		AlertMsg += errorNumber + ") Date-Added has incorrect form\n";
 		++errorNumber;
@@ -121,6 +134,54 @@ function CheckPhone(){
 		return false;
 	}else{
 		document.getElementById('phone').style.border = "1px solid white";
+		return true;
+	}
+}
+
+function CheckStreet(){
+	var Street = document.getElementById('street').value;
+	var StreetCheck = /^([0-9A-z]+ )?([A-z ])+$/;
+	if(!Street.match(StreetCheck)){
+		document.getElementById('street').style.border = "1px solid red";
+		return false;
+	}else{
+		document.getElementById('street').style.border = "1px solid white";
+		return true;
+	}
+}
+
+function CheckCity(){
+	var City = document.getElementById('city').value;
+	var CityCheck = /^([A-Z]{1}[a-z]+ ?){1,}$/;
+	if(!City.match(CityCheck)){
+		document.getElementById('city').style.border = "1px solid red";
+		return false;
+	}else{
+		document.getElementById('city').style.border = "1px solid white";
+		return true;
+	}
+}
+
+function CheckState(){
+	var State = document.getElementById('state').value;
+	var StateCheck = /^[A-Z]{2}$/;
+	if(!State.match(StateCheck)){
+		document.getElementById('state').style.border = "1px solid red";
+		return false;
+	}else{
+		document.getElementById('state').style.border = "1px solid white";
+		return true;
+	}
+}
+
+function CheckZip(){
+	var Zip = document.getElementById('zip').value;
+	var ZipCheck = /^[0-9]{5,6}$/;
+	if(!Zip.match(ZipCheck)){
+		document.getElementById('zip').style.border = "1px solid red";
+		return false;
+	}else{
+		document.getElementById('zip').style.border = "1px solid white";
 		return true;
 	}
 }

@@ -10,9 +10,12 @@ $(document).ready(function(){
 				$('#lname').val(Result[2]);
 				$('#email').val(Result[3]);
 				$('#phone').val(Result[4]);
-				$('#address').val(Result[5]);
-				$('#add-date').val(Result[6]);
-				if(Result[7] == "Male"){
+				$('#street').val(Result[8]);
+				$('#city').val(Result[9]);
+				$('#state').val(Result[10]);
+				$('#zip').val(Result[11]);
+				$('#add-date').val(Result[5]);
+				if(Result[6] == "Male"){
 					$('#Male').attr('checked', true);
 				}else{
 					$('#Female').attr('checked', true);

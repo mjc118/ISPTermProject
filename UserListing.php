@@ -12,7 +12,10 @@
 	}
 	
 	//Which table to select from
-	$result = $mysqli->query("SELECT * FROM users");
+	//my table names are users, address
+	//users columns are :userid, fname, lname, email, phone, add-date, sex
+	//address columns are: userid, street, city, state, zip
+	$result = $mysqli->query("SELECT * FROM users JOIN address ON users.userid = address.userid");
 
 	if(!$result){
 		echo "<p> query failed</p>";
@@ -56,19 +59,22 @@
 			<tr><td><input type="submit" id="new-user" name="new-user" value="Add User"></td></tr>
 			</form>
 			<tr><th></th><th> UserId</th><th> FirstName</th><th> LastName</th><th> Email</th>
-				<th> Phone</th><th> Address</th><th> Date-Added</th><th> Sex</th></tr>
+				<th> Phone</th><th> Street</th><th> City</th><th> State</th><th> Zip</th><th> Date-Added</th><th> Sex</th></tr>
 				<?php
 					foreach($arr as $ele){
 						echo "<form attribute='post' action='AddEditUser.php' method='post'>
-								<tr><td colspan='1'><input type='submit' id='edit-user' name='edit-user' value='Edit User'></td>
-								<td colspan='1'><input type='text' id='userid' name='userid' value=$ele[0] readonly></td>
-								<td colspan='1'><input type='text' id='fname' name='fname' value=$ele[1] readonly></td>
-								<td colspan='1'><input type='text' id='lname' name='lname' value=$ele[2] readonly></td>
-								<td colspan='1'><input style='width:200px;' type='text' id='email' name='email' value=$ele[3] readonly></td>
-								<td colspan='1'><input type='text' id='phone' name='phone' value=$ele[4] readonly></td>
-								<td colspan='1'><input style='width:200px;' type='text' id='address' name='address' value=$ele[5] readonly></td>
-								<td colspan='1'><input type='text' id='add-date' name='add-date' value=$ele[6] readonly></td>
-								<td colspan='1'><input type='text' id='sex' name='sex' value=$ele[7] readonly></td></tr>
+								<tr><td colspan='1'><input type='submit' id='edit-user$ele[0]' name='edit-user' value='Edit User'></td>
+								<td colspan='1'><input style='width:65px;' type='text' id='userid' name='userid' value='$ele[0]' readonly></td>
+								<td colspan='1'><input style='width:75px;' type='text' id='fname' name='fname' value='$ele[1]' readonly></td>
+								<td colspan='1'><input style='width:80px;' type='text' id='lname' name='lname' value='$ele[2]' readonly></td>
+								<td colspan='1'><input style='width:180px;' type='text' id='email' name='email' value='$ele[3]' readonly></td>
+								<td colspan='1'><input style='width:80px;' type='text' id='phone' name='phone' value='$ele[4]' readonly></td>
+								<td colspan='1'><input style='width:130px;' type='text' id='street' name='street' value='$ele[8]' readonly></td>
+								<td colspan='1'><input type='text' id='city' name='city' value='$ele[9]' readonly></td>
+								<td colspan='1'><input style='width:35px;' type='text' id='state' name='state' value='$ele[10]' readonly></td>
+								<td colspan='1'><input style='width:50px;' type='text' id='zip' name='zip' value='$ele[11]' readonly></td>
+								<td colspan='1'><input style='width:80px;' type='text' id='add-date' name='add-date' value='$ele[5]' readonly></td>
+								<td colspan='1'><input style='width:50px;' type='text' id='sex' name='sex' value='$ele[6]' readonly></td></tr>
 							  </form>"; 
 					}
 				?>

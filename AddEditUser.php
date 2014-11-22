@@ -40,7 +40,10 @@
 				<tr><td>Last Name:</td><td><input type="text" id="lname" name="lname" onchange="CheckLName();"></td></tr>
 				<tr><td>Email:</td><td><input type="text" id="email" name="email" onchange="CheckEmail();"></td></tr>
 				<tr><td>Phone:</td><td><input type="text" id="phone" name="phone" onchange="CheckPhone();"></td></tr>
-				<tr><td>Address:</td><td><input type="text" id="address" name="address"></td></tr>
+				<tr><td>Street:</td><td><input type="text" id="street" name="street" onchange="CheckStreet();"></td></tr>
+				<tr><td>City:</td><td><input type="text" id="city" name="city" onchange="CheckCity();"></td></tr>
+				<tr><td>State:</td><td><input type="text" id="state" name="state" onchange="CheckState();"></td></tr>
+				<tr><td>Zip:</td><td><input type="text" id="zip" name="zip" onchange="CheckZip();"></td></tr>
 				<tr><td>Date Added:</td><td><input type="text" id="add-date" name="add-date" onchange="CheckDate();"></td></tr>
 				<tr><td>Male:<input type="radio" id="Male" name="sex"></td><td>Female:<input type="radio" id="Female" name="sex"></td></tr>
 				<tr>
